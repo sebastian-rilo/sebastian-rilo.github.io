@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="50">
+	<defs>
+		<linearGradient id="a">
+			<stop offset="0%" stop-color="#1f11ce" />
+			<stop offset="25%" stop-color="#e52b2b" />
+			<stop offset="50%" stop-color="#1f11ce" />
+			<stop offset="75%" stop-color="#e52b2b" />
+		</linearGradient>
+		<linearGradient id="c">
+			<stop offset="0%" stop-color="#fff" stop-opacity="0" />
+			<stop offset="25%" stop-color="#fff">
+				<animate attributeName="stop-opacity" dur="1s" repeatCount="indefinite" values=".25; .15; 0; 0" />
+			</stop>
+			<stop offset="50%" stop-color="#fff">
+				<animate attributeName="stop-opacity" dur="1s" repeatCount="indefinite" values=".75; .5; .25; 0" />
+			</stop>
+			<stop offset="75%" stop-color="#fff">
+				<animate attributeName="stop-opacity" dur="1s" repeatCount="indefinite" values="1; .75; .5; .25" />
+			</stop>
+			<stop offset="100%" stop-color="#fff" stop-opacity="1" />
+		</linearGradient>
+		<path id="d" fill="none" stroke="url(#a)" stroke-width="2" d="M0 25q25 5 50 0t50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0 50 0" mask="url(#b)" />
+		<mask id="b">
+			<path fill="url(#c)" d="M0 0h600v50H0z" />
+		</mask>
+	</defs>
+	<use xlink:href="#d">
+		<animate attributeName="x" dur="1s" from="0" repeatCount="indefinite" to="-300" />
+	</use>
+</svg>
