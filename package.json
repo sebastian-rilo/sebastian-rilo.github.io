@@ -17,10 +17,15 @@
    "author": "sebastian-rilo",
    "license": "ISC",
    "devDependencies": {
+      "eslint": "^8.23.1",
+      "eslint-config-airbnb-base": "^15.0.0",
+      "eslint-plugin-import": "^2.26.0",
       "gh-pages": "^4.0.0"
    },
    "homepage": "https://sebastian-rilo.github.io",
    "dependencies": {
+      "gsap": "^3.11.1",
+      "jquery": "^3.6.1",
       "vite": "^3.1.0"
    }
 }
