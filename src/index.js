@@ -11,7 +11,7 @@ const colourPairs = [
 ];
 
 const hoverdelay = 150;
-let hoverLastAction = 0;
+var hoverLastAction = 0;
 
 function weightedRandom(max, bellFactor) {
   let num = 0;
