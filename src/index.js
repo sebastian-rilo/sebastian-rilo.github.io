@@ -12,6 +12,7 @@ const colourPairs = [
 
 const hoverdelay = 150;
 let hoverLastAction = 0;
+let slideIndex = 1;
 
 function weightedRandom(max, bellFactor) {
   let num = 0;
@@ -54,18 +55,62 @@ function makeItRain() {
   }
 }
 
+function showSlides(n) {
+  let i;
+  const slides = $('.mySlides');
+  const dots = $('.dot');
+  if (n > slides.length) {
+    slideIndex = 1;
+  }
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+  for (i = 0; i < slides.length; i++) {
+    slides[i].setAttribute('style', 'display: none;');
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].clas = dots[i].className.replace(' active', '');
+  }
+  slides[slideIndex - 1].setAttribute('style', 'display: block;');
+  dots[slideIndex - 1].className += ' active';
+}
+
+function plusSlides(n) {
+  slideIndex += n;
+  showSlides(slideIndex);
+}
+
+let slideIntervalHandle = setInterval(() => {
+  plusSlides(1);
+}, 5000);
+
+function currentSlide(n) {
+  slideIndex = n;
+  showSlides(slideIndex);
+}
+
 function sendEmail(e) {
   e.preventDefault();
-  Email.send({
-    SecureToken: 'a036fb90-b363-4603-93c7-1c78c35ea1fe',
-    To: 'sebastianrilo@gmail.com',
-    From: $('#contact-email').val(),
-    Subject: $('#contact-subject').val(),
-    Body: $('#contact-body').val(),
-  }).then(() =>{
-    console.log("email-enviado");
-    $('#contact-form').trigger('reset');
-});
+  // eslint-disable-next-line no-undef
+  emailjs
+    .send(
+      'service_cd0l12s',
+      'template_284fk09',
+      {
+        reply_to: $('#contact-email').val(),
+        subject: $('#contact-subject').val(),
+        body: $('#contact-body').val(),
+      },
+      'Z6dr8NV2C9AAgnvW2',
+    ).then(
+      () => {
+        console.log('email-enviado');
+        $('#contact-form').trigger('reset');
+      },
+      (error) => {
+        console.log(error);
+      },
+    );
 }
 
 $('#rain-zone').on('animationend', 'img', (e) => {
@@ -97,6 +142,24 @@ $('.button-expand').on('mouseenter mouseleave', (e) => {
   }, hoverdelay);
 });
 
+$('.prev, .next').on('click', (e) => {
+  plusSlides(parseInt(e.target.attributes.getNamedItem('data-value').value, 10));
+  clearInterval(slideIntervalHandle);
+  slideIntervalHandle = setInterval(() => {
+    plusSlides(1);
+  }, 5000);
+});
+
+$('.dot').on('click', (e) => {
+  currentSlide(parseInt(e.target.attributes.getNamedItem('data-value').value, 10));
+  clearInterval(slideIntervalHandle);
+  slideIntervalHandle = setInterval(() => {
+    plusSlides(1);
+  }, 5000);
+});
+
 setTimeout(() => {
   makeItRain();
 }, 1500);
+
+showSlides(1);
