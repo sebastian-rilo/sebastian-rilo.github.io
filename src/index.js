@@ -11,7 +11,7 @@ const colourPairs = [
 ];
 
 const hoverdelay = 150;
-var hoverLastAction = 0;
+let hoverLastAction = 0;
 
 function weightedRandom(max, bellFactor) {
   let num = 0;
@@ -54,9 +54,25 @@ function makeItRain() {
   }
 }
 
+function sendEmail(e) {
+  e.preventDefault();
+  Email.send({
+    SecureToken: 'a036fb90-b363-4603-93c7-1c78c35ea1fe',
+    To: 'sebastianrilo@gmail.com',
+    From: $('#contact-email').val(),
+    Subject: $('#contact-subject').val(),
+    Body: $('#contact-body').val(),
+  }).then(() =>{
+    console.log("email-enviado");
+    $('#contact-form').trigger('reset');
+});
+}
+
 $('#rain-zone').on('animationend', 'img', (e) => {
   customizeDrop(e.currentTarget.id);
 });
+
+$('#contact-form').on('submit', sendEmail);
 
 $('.button-expand').on('mouseenter mouseleave', (e) => {
   const selector = e.currentTarget.attributes.name.value;

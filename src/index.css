@@ -55,7 +55,7 @@ section {
    height: 100%;
    width: 80%;
    display: grid;
-   grid-template-rows: repeat(3, 100vh);
+   grid-template-rows: repeat(5, 100vh);
 }
 
 .view {
@@ -158,6 +158,43 @@ h3 {
    align-items: center;
    text-align: justify;
    text-justify: kashida;
+}
+
+#contact-form {
+   height: 100%;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+#contact-form h2 {
+   margin-bottom: 2em;
+}
+
+#contact-form input, #contact-form textarea {
+   width: 80%;
+   margin: 10px;
+   border-radius: 1rem;
+   outline: none;
+   font-size: medium;
+   padding: 1rem;
+   resize: none;
+   border: 0;
+}
+
+#contact-form button {
+   width: 50%;
+   margin: 10px;
+   border-radius: 1rem;
+   outline: none;
+   border: 0;
+   font-size: medium;
+   background-color: #4d0819;
+   color: white;
+   padding: 1rem;
+   cursor: pointer;
 }
 
 
